@@ -45,7 +45,7 @@ order by bno desc, regdate desc
 	from
 		tbl_board
 	where bno > 0
-	order by desc, regdate desc
+	order by bno desc, regdate desc
 	limit #{page}, 10
 ]]>
 </select>
