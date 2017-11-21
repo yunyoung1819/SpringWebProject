@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ese.domain.BoardVO;
+import com.ese.domain.Criteria;
 
 /**
  * BoardDAO 인터페이스를 구현한 BoardDAOImpl
@@ -60,5 +61,11 @@ public class BoardDAOImpl implements BoardDAO {
 		page = (page - 1 ) * 10;
 		
 		return session.selectList(namespace + ".listPage", page);
+	}
+	
+	//Criteria 
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(namespace + ".listCriteria", cri);
 	}
 }
