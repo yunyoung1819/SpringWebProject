@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ese.controller.HomeController;
 import com.ese.domain.BoardVO;
+import com.ese.domain.Criteria;
 import com.ese.persistence.BoardDAO;
 
 /**
@@ -48,6 +49,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return dao.listAll();
+	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		
+		return dao.listCriteria(cri);
 	}
 
 }
