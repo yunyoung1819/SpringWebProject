@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
+import com.ese.domain.PageMaker;
 import com.ese.service.BoardService;
 
 /**
@@ -99,6 +100,19 @@ public class BoardController {
 		logger.info("show list Page with Criteria.........");
 		
 		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value="/listPage", method = RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception{
+		
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(131);
+		
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 }
