@@ -57,4 +57,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listCriteria(cri);
 	}
 
+	// 화면 하단의 페이지 번호 처리
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		
+		return dao.countPaging(cri);
+	}
 }

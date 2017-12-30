@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
@@ -85,5 +87,23 @@ public class BoardDAOTest {
 		for(BoardVO boardVO : list){
 			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
 		}
+	}
+	
+	// 스프링 MVC의 경우 org.springframework.web.util 패키지에 웹 개발에 필요한 많은 유틸리티 클래스를 제공
+	// URI 를 작성할 때 도움이 되는 클래스가 UriComponentsBuilder와 UriComponents 클래스이다
+	// UriComponents 클래스는 path나 query에 해당하는 문자열들을 추가해서 원하는 URI를 생성할 때 사용함
+	// UriComponentsBuilder 테스트
+	@Test
+	public void testURI() throws Exception{
+		
+		UriComponents uriComponents =
+				UriComponentsBuilder.newInstance()
+				.path("/board/read")
+				.queryParam("bno", 13)
+				.queryParam("perPageNum", 20)
+				.build();
+		
+		//logger.info("/board/read?bno=13&perPageNum=20");
+		logger.info(uriComponents.toString());
 	}
 }

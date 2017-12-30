@@ -14,16 +14,18 @@ import com.ese.domain.Criteria;
  */
 public interface BoardService {
 	
-	public void regist(BoardVO board) throws Exception; //등록
+	public void regist(BoardVO board) throws Exception; // 등록
 	
-	public BoardVO read(Integer bno) throws Exception;  //조회
+	public BoardVO read(Integer bno) throws Exception;  // 조회
 	
-	public void modify(BoardVO board) throws Exception; //수정
+	public void modify(BoardVO board) throws Exception; // 수정
 	
-	public void remove(Integer bno) throws Exception;   //삭제
+	public void remove(Integer bno) throws Exception;   // 삭제
 	
-	public List<BoardVO> listAll() throws Exception;    //전체조회
+	public List<BoardVO> listAll() throws Exception;    // 전체조회
 	
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception; //페이징 처리용 메소드 추가
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception; // 페이징 처리용 메소드 추가
+	
+	public int listCountCriteria(Criteria cri) throws Exception; // 화면 하단의 페이지 번호 처리
 	
 }

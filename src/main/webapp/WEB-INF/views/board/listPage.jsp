@@ -6,12 +6,15 @@
 
 <%@include file="../include/header.jsp"%>
 
+<!-- Main content -->
 <section class="content">
 	<div class="row">
+	<!-- left column -->
 	<div class="col-md-12">
+		<!-- general form elements -->
 		<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">LIST ALL PAGE</h3>
+					<h3 class="box-title">LIST PAGING</h3>
 				</div>
 				<div class="box-body">
 				<table class="table table-bordered">
@@ -29,10 +32,12 @@
 							<td>${boardVO.bno}</td>
 							<td><a href='/board/read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
 							<td>${boardVO.writer}</td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" 
+												value="${boardVO.regdate}" /></td>
 							<td><span class="badege bg-red">${boardVO.viewcnt}</span></td>
 						</tr>
-					</c:forEach>											
+					</c:forEach>
+																
 				</table>
 				</div>
 				<!-- /.box-body -->
@@ -58,6 +63,14 @@
 							
 						</ul>
 					</div>
+					
+					<div class="text-center">
+						<ul class="pagination">
+						
+							
+						</ul>
+					</div>
+					
 				</div>
 				<!-- /.box-footer-->
 			</div>

@@ -63,10 +63,17 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectList(namespace + ".listPage", page);
 	}
 
-	//Criteria
+	// Criteria
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 		
 		return session.selectList(namespace + ".listCriteria", cri); 
+	}
+
+	// 화면 하단의 페이지 번호 처리를 위한 Total Count 반환
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		
+		return session.selectOne(namespace + ".countPaging", cri);
 	}
 }

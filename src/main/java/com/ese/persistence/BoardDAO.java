@@ -24,4 +24,6 @@ public interface BoardDAO {
 	
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception; 
 	
+	public int countPaging(Criteria cri) throws Exception; // 화면 하단의 페이지 번호 처리(tocalCount)륿 반환 
+	
 }

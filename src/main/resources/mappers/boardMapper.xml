@@ -62,4 +62,16 @@ order by bno desc, regdate desc
 ]]>
 </select>
 
+<!-- 화면 하단의 페이지 번호 처리를 위한 SQL문을 추가 -->
+<select id="countPaging" resultType="int">
+<![CDATA[
+	select
+		count(bno)
+	from 
+		tbl_board
+	where 
+		bno > 0
+]]>
+</select>
+
 </mapper>
