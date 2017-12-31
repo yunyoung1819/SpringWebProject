@@ -1,5 +1,8 @@
 package com.ese.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 /**
  * 페이징 처리용 클래스
  * 
@@ -106,4 +109,14 @@ public class PageMaker {
 		return cri;
 	}
 	
+	public String makeQuery(int page){
+		
+		UriComponents uriComponents =
+				UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", cri.getPerPageNum())
+				.build();
+		
+		return uriComponents.toUriString();
+	}
 }
