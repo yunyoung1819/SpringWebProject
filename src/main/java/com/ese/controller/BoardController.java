@@ -113,10 +113,33 @@ public class BoardController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		// pageMaker.setTotalCount(131);
 		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
+	}
+	
+	//조회 페이지 수정 (조회 시점에 전달되는 파라미터가 bno, page, perPageNum으로 늘어남)
+	@RequestMapping(value="/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) throws Exception{
+		
+		model.addAttribute(service.read(bno));
+	}
+	
+	// 삭제 페이징 처리
+	@RequestMapping(value="/removePage", method=RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno,
+			Criteria cri,
+			RedirectAttributes rttr) throws Exception {
+
+		logger.info("RemovePage...............");
+		
+		service.remove(bno);
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listPage";
 	}
 	
 }

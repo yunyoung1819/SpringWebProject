@@ -79,7 +79,7 @@ public class BoardDAOTest {
 	public void testListCriteria() throws Exception {
 		
 		Criteria cri = new Criteria(); //Criteria 객체 생성
-		cri.setPage(3);  			   //3페이지 셋팅
+		cri.setPage(15);  			   //3페이지 셋팅
 		cri.setPerPageNum(20);  	   //20개 데이터 셋팅
 		
 		List<BoardVO> list = dao.listCriteria(cri);
