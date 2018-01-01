@@ -51,7 +51,7 @@ $(document).ready(function(){
 	
 	// 수정 버튼
 	$(".btn-warning").on("click", function(){
-		formObj.attr("action", "/board/modify");
+		formObj.attr("action", "/board/modifyPage");
 		formObj.attr("method", "get");
 		formObj.submit();
 	});
