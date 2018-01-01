@@ -58,7 +58,8 @@ $(document).ready(function(){
 	
 	// 삭제 버튼
 	$(".btn-danger").on("click", function(){
-		formObj.attr("action", "/board/remove");
+		formObj.attr("method", "get")
+		formObj.attr("action", "/board/removePage");
 		formObj.submit();
 	});
 	
