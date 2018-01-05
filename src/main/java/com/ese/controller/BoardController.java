@@ -142,4 +142,12 @@ public class BoardController {
 		return "redirect:/board/listPage";
 	}
 	
+	@RequestMapping(value="/modifyPage", method = RequestMethod.GET)
+	public void modifyPagingGET(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") Criteria cri,
+			Model model) throws Exception{
+		
+		model.addAttribute(service.read(bno));
+	}
+	
 }
