@@ -20,6 +20,7 @@
 				<input type='hidden' name='page' value="${cri.page}">	<!-- 현재 조회하는 페이지 번호 -->
 				<input type='hidden' name='perPageNum' value="${cri.perPageNum}"> <!-- 한 페이지당 출력하는 데이터 개수 -->
 			</form>
+			
 				<div class="box-body">
 					<div class="form-group">
 						<lable for="exampleInputEmail1">Title</lable>
@@ -47,7 +48,7 @@ $(document).ready(function(){
 	
 	var formObj = $("form[role='form']");
 	
-	console.log(formObj);
+	console.log("formObj: ", formObj);
 	
 	// 수정 버튼
 	$(".btn-warning").on("click", function(){
@@ -58,7 +59,7 @@ $(document).ready(function(){
 	
 	// 삭제 버튼
 	$(".btn-danger").on("click", function(){
-		formObj.attr("method", "get")
+		formObj.attr("method", "post")
 		formObj.attr("action", "/board/removePage");
 		formObj.submit();
 	});
