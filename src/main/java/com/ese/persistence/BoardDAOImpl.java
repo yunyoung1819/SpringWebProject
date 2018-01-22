@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
+import com.ese.domain.SearchCriteria;
 
 /**
  * BoardDAO 인터페이스를 구현한 BoardDAOImpl
@@ -75,5 +76,16 @@ public class BoardDAOImpl implements BoardDAO {
 	public int countPaging(Criteria cri) throws Exception {
 		
 		return session.selectOne(namespace + ".countPaging", cri);
+	}
+
+	// 검색 및 페이징 처리
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace + ".listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
 }

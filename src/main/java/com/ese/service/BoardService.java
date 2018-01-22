@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
+import com.ese.domain.SearchCriteria;
 
 /**
  * BoardService 인터페이스
@@ -28,4 +29,7 @@ public interface BoardService {
 	
 	public int listCountCriteria(Criteria cri) throws Exception; // 화면 하단의 페이지 번호 처리
 	
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception; // 검색
+	
+	public int listSearchCount(SearchCriteria cri) throws Exception; // 검색
 }

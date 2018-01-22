@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
+import com.ese.domain.SearchCriteria;
 import com.ese.persistence.BoardDAO;
 
 /**
@@ -122,5 +123,27 @@ public class BoardDAOTest {
 		logger.info("/board/read?bno=12&perPageNum=20");
 		logger.info(uriComponents.toString());
 		
+	}
+	
+	@Test
+	public void testDynamic1() throws Exception {
+		
+		SearchCriteria cri = new SearchCriteria();
+		
+		cri.setPage(1);
+		cri.setKeyword("파우스트");
+		cri.setSearchType("t");
+		
+		logger.info("======================");
+		
+		List<BoardVO> list = dao.listSearch(cri);
+		
+		for(BoardVO boardVO : list){
+			logger.info(boardVO.getBno() + ": " + boardVO.getTitle());
+		}
+		
+		logger.info("=====================");
+		
+		logger.info("COUNT: " + dao.listSearchCount(cri));
 	}
 }

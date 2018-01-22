@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
+import com.ese.domain.SearchCriteria;
 
 /**
  * 6. BoardDAO 인터페이스 생성
@@ -25,5 +26,11 @@ public interface BoardDAO {
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception; 
 	
 	public int countPaging(Criteria cri) throws Exception; // 화면 하단의 페이지 번호 처리(tocalCount)륿 반환 
+	
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception; // 검색과 페이징 처리
+	
+	public int listSearchCount(SearchCriteria cri) throws Exception; // 검색과 페이징 처리
+	
+	
 	
 }

@@ -45,7 +45,7 @@
 						<tr>
 							<td>${boardVO.bno}</td>
 							<td>
-								<a href='/board/readPage${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}'>
+								<a href='/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}'>
 									${boardVO.title}
 								</a>
 							</td>
@@ -54,7 +54,7 @@
 									value="${boardVO.regdate}" />
 							</td>
 							<td><span class="badege bg-red">${boardVO.viewcnt}</span></td>
-						</tr>
+						</tr>																																																		
 					</c:forEach>
 																
 				</table>
@@ -113,6 +113,22 @@
 		alert("처리가 완료되었습니다.");
 	}
 	
+	$(document).ready(function(){
+		
+		$('#searchBtn').on("click", function(event){
+			
+			self.location = "list" + '${pageMaker.makeQuery(1)}'
+								   + "&searchType="
+								   + $("select option:selected").val()
+								   + "&keyword=" + $('#keywordInput').val();
+		});
+		
+		$('#newBtn').on("click", function(evt){
+			
+			self.location = "register";
+		});
+	});
+			
 </script>
 
 <%@include file="../include/footer.jsp"%>
