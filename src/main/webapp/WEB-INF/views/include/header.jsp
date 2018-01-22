@@ -330,8 +330,8 @@
               </ul>
             </li>
             <li>
-              <a href="../widgets.html">
-                <i class="fa fa-th"></i> <span>숙박</span> <small class="label pull-right bg-green">new</small>
+              <a href="#">
+                <i class="fa fa-th"></i><span id="booking">숙박</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li class="treeview">
@@ -397,7 +397,7 @@
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>멤버쉽</span>
+                <i class="fa fa-folder"></i> <span>렌터카</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -412,25 +412,15 @@
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-share"></i> <span>연계사이트</span>
+                <i class="fa fa-share"></i> <span>제휴사이트</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i>페이스북</a></li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> 인스타그램 <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> 익스피디아 </a></li>
-                    <li>
-                      <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
-                      <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                <li><a href="http://www.naver.com"><i class="fa fa-circle-o"></i> 네이버 </a></li>
+                <li><a href="http://www.daum.net"><i class="fa fa-circle-o"></i> 다음 </a></li>
+                <li><a href="http://www.facebook.com"><i class="fa fa-circle-o"></i> 페이스북 </a></li>
+                <li><a href="https://www.instagram.com"><i class="fa fa-circle-o"></i> 인스타그램 </a></li>
+                <li><a href="https://www.expedia.co.kr"><i class="fa fa-circle-o"></i> 익스피디아 </a></li>
               </ul>
             </li>
             <li><a href="/resources/documentation/index.html"><i class="fa fa-book"></i> <span> 모바일 </span></a></li>
@@ -457,3 +447,9 @@
             <li class="active">General Elements</li>
           </ol>
         </section>
+        
+ <script>
+ 	$('#booking').on("click", function(){
+ 		self.location="../booking"
+ 	})
+ </script>
