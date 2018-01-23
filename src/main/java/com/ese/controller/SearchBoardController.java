@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ese.domain.BoardVO;
 import com.ese.domain.PageMaker;
 import com.ese.domain.SearchCriteria;
 import com.ese.service.BoardService;
@@ -71,12 +72,33 @@ public class SearchBoardController {
 		return "redirect:/sboard/list";
 	}
 	
-	//게시물 수정 처리
+	// 게시물 수정 처리 (GET 방식)
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPagingGET(int bno, @ModelAttribute("cri") SearchCriteria cri,
 			Model model) throws Exception{
 		
 		model.addAttribute(service.read(bno));
+	}
+	
+	// 게시물 수정 처리 (POST 방식)
+	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
+	public String modifyPagingPOST(BoardVO board, 
+			SearchCriteria cri, 
+			RedirectAttributes rttr) throws Exception{
+		
+		logger.info(cri.toString());
+		service.modify(board);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		logger.info(rttr.toString());
+		
+		return "redirect:/sboard/list";
 	}
 	
 }
