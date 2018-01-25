@@ -61,7 +61,8 @@
 		// 취소 버튼
 		// 수정 페이지에서는 화면상에서 '취소' 버튼을 클릭하면 원래의 목록 페이지로 이동하도록 처리
 		$(".btn-warning").on("click", function(){
-			self.location = "/board/listPage?page=${cri.page}&perPageNum=${cri.perPageNum}";
+			self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+					+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
 		});
 		
 		// 저장 버튼
