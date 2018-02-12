@@ -44,7 +44,34 @@
 					<button type="submit" class="btn btn-danger">삭제</button>
 					<button type="submit" class="btn btn-primary">목록</button>
 				</div>
-				
+			</div>
+		</div>
+	</div>
+	
+	<!-- 댓글 등록 부분 -->
+	<!-- 댓글 등록에 필요한 <div> -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-success">
+				<div class="box-header">
+					<h3 class="box-title">ADD NEW REPLY</h3>
+				</div>
+				<div class="box-body">
+					<label for="newReplyWriter">Writer</label>
+					<input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter">
+					<label for="newReplyText">ReplyText</label>
+					<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">				
+				</div>
+				<!-- /.box-body -->
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /.content-wrapper -->
+
 <script>
 $(document).ready(function(){
 	
@@ -74,11 +101,5 @@ $(document).ready(function(){
 	
 });
 </script>
-			</div>
-		</div>
-	</div>
-</section>
-</div>
-<!-- /.content-wrapper -->
 
 <%@include file="../include/footer.jsp"%>

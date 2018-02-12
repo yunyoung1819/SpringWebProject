@@ -2,12 +2,15 @@ package com.ese.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
 import com.ese.domain.SearchCriteria;
 
 /**
- * BoardService ÀÎÅÍÆäÀÌ½º
+ * BoardService ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
  * 
  * @since : 2017.10.29
  * @author Yoon Young
@@ -15,21 +18,23 @@ import com.ese.domain.SearchCriteria;
  */
 public interface BoardService {
 	
-	public void regist(BoardVO board) throws Exception; // µî·Ï
+	public void regist(BoardVO board) throws Exception; // ï¿½ï¿½ï¿½
 	
-	public BoardVO read(Integer bno) throws Exception;  // Á¶È¸
+	public BoardVO read(Integer bno) throws Exception;  // ï¿½ï¿½È¸
 	
-	public void modify(BoardVO board) throws Exception; // ¼öÁ¤
+	public void modify(BoardVO board) throws Exception; // ï¿½ï¿½ï¿½ï¿½
 	
-	public void remove(Integer bno) throws Exception;   // »èÁ¦
+	public void remove(Integer bno) throws Exception;   // ï¿½ï¿½ï¿½ï¿½
 	
-	public List<BoardVO> listAll() throws Exception;    // ÀüÃ¼Á¶È¸
+	public List<BoardVO> listAll() throws Exception;    // ï¿½ï¿½Ã¼ï¿½ï¿½È¸
 	
-	public List<BoardVO> listCriteria(Criteria cri) throws Exception; // ÆäÀÌÂ¡ Ã³¸®¿ë ¸Þ¼Òµå Ãß°¡
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception; // ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ß°ï¿½
 	
-	public int listCountCriteria(Criteria cri) throws Exception; // È­¸é ÇÏ´ÜÀÇ ÆäÀÌÁö ¹øÈ£ Ã³¸®
+	public int listCountCriteria(Criteria cri) throws Exception; // È­ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ Ã³ï¿½ï¿½
 	
-	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception; // °Ë»ö
+	public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception; // ï¿½Ë»ï¿½
 	
-	public int listSearchCount(SearchCriteria cri) throws Exception; // °Ë»ö
+	public int listSearchCount(SearchCriteria cri) throws Exception; // ï¿½Ë»ï¿½
+	
+	public void excelDown(HttpServletResponse response, String filePath) throws Exception; 
 }

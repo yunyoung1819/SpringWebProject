@@ -1,22 +1,38 @@
 package com.ese.service;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriUtils;
 
-import com.ese.controller.HomeController;
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
 import com.ese.domain.SearchCriteria;
 import com.ese.persistence.BoardDAO;
 
+import jxl.Workbook;
+import jxl.format.Alignment;
+import jxl.format.Border;
+import jxl.format.BorderLineStyle;
+import jxl.format.Colour;
+import jxl.format.ScriptStyle;
+import jxl.format.UnderlineStyle;
+import jxl.format.VerticalAlignment;
+import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+
 /**
  * BoardServiceImpl 
- * BoardService¸¦ ±¸ÇöÇÑ Å¬·¡½º
+ * BoardServiceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  * 
  * @author Administrator
  * 
@@ -58,7 +74,7 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listCriteria(cri);
 	}
 
-	// È­¸é ÇÏ´ÜÀÇ ÆäÀÌÁö ¹øÈ£ Ã³¸®
+	// È­ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ Ã³ï¿½ï¿½
 	@Override
 	public int listCountCriteria(Criteria cri) throws Exception {
 		
@@ -75,5 +91,16 @@ public class BoardServiceImpl implements BoardService {
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		
 		return dao.listSearchCount(cri);
+	}
+	
+	/**
+	 * Download Excel File
+	 * @Method Name : excelDown
+	 * @create Date : 2018. 02. 08.
+	 * @made by : Yun Young
+	 */
+	@Override
+	public void excelDown(HttpServletResponse response, String filePath) throws Exception {
+		
 	}
 }

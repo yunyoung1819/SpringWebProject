@@ -1,6 +1,10 @@
 package com.ese.controller;
 
+import java.io.File;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ese.domain.BoardVO;
@@ -50,7 +55,7 @@ public class BoardController {
 		//model.addAttribute("result", "success");
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
-		//return "/board/success";  //»õ·Î°íÄ§À» ÀÌ¿ëÇÑ µµ¹è¸¦ ¹æÁöÇÏ±â À§ÇØ redirect¸¦ ÀÌ¿ëÇÏ¿© ¸ñ·Ï Á¶È¸ ÆäÀÌÁö·Î ÀÚµ¿ ÀÌµ¿ 
+		//return "/board/success";  //ï¿½ï¿½ï¿½Î°ï¿½Ä§ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ redirectï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Ìµï¿½ 
 		return "redirect:/board/listAll";
 	}
 	
@@ -103,7 +108,7 @@ public class BoardController {
 		model.addAttribute("list", service.listCriteria(cri));
 	}
 	
-	// ÆäÀÌÂ¡ Ã³¸® 
+	// ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ 
 	@RequestMapping(value="/listPage", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
 		
@@ -118,14 +123,14 @@ public class BoardController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 	
-	//Á¶È¸ ÆäÀÌÁö ¼öÁ¤ (Á¶È¸ ½ÃÁ¡¿¡ Àü´ÞµÇ´Â ÆÄ¶ó¹ÌÅÍ°¡ bno, page, perPageNumÀ¸·Î ´Ã¾î³²)
+	//ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÞµÇ´ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ bno, page, perPageNumï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³²)
 	@RequestMapping(value="/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) throws Exception{
 		
 		model.addAttribute(service.read(bno));
 	}
 	
-	// »èÁ¦ ÆäÀÌÂ¡ Ã³¸®
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	@RequestMapping(value="/removePage", method=RequestMethod.POST)
 	public String remove(@RequestParam("bno") int bno,
 			Criteria cri,
@@ -160,6 +165,38 @@ public class BoardController {
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/board/listPage";
+	}
+	
+	/**
+	 * Download Excel File
+	 * @Method Name : excelDown
+	 * @create Date : 2018. 02. 08.
+	 * @made by : Yun Young
+	 * @param :
+	 * @return : String
+	 */
+	@RequestMapping(value = "/excelDown.do")
+	public @ResponseBody String excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		//String filePath = request.getSession().getServletContext().getRealPath("/")+"file_upload";
+		String filePath = "C://zzz/" + "file_download";
+		
+		System.out.println(filePath);
+		
+		File file = new File(filePath);
+		boolean fileMKResult = false;
+		
+		if(!file.exists()){
+			fileMKResult = file.mkdir();
+		}
+		
+		if(fileMKResult){
+			System.out.println("Directory is made");
+		}
+		
+		service.excelDown(response, filePath);
+		
+		return null;
 	}
 	
 }

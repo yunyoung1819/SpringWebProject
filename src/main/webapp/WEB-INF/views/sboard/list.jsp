@@ -31,6 +31,7 @@
 				<input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'></input>
 				<button id='searchBtn'>Search</button>
 				<button id='newBtn'>New Board</button>
+				<button id='excelDown'>엑셀 다운로드</button>
 				<table class="table table-bordered">
 					<tr>
 						<th style="width: 10px">BNO</th>
@@ -86,7 +87,6 @@
 							
 						</ul>
 					</div>
-					
 					<div class="text-center">
 						<ul class="pagination">
 						
@@ -95,6 +95,8 @@
 					</div>
 					
 				</div>
+				<form action="/board/excelDown.do" id="excelForm" method="post" onsubmit="return;">
+				</form>
 				<!-- /.box-footer-->
 			</div>
 		</div>
@@ -126,6 +128,12 @@
 		$('#newBtn').on("click", function(evt){
 			
 			self.location = "register";
+		});
+		
+		//Download Excel File
+		$('#excelDown').bind("click", function(){
+			alert("click");
+			$("#excelForm").submit();
 		});
 	});
 			
