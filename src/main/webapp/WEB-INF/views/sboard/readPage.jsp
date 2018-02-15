@@ -67,6 +67,16 @@
 					<button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
 				</div>
 			</div>
+			
+			<!-- Time line -->
+			<ul class="timeline">
+				<li class="time-label" id="repliesDiv"><span class="bg-green">Replies List</span></li>
+			</ul>
+			
+			<div class='text-center'>
+				<ul id="pagination" class="paginateion pagination-sm no-margin">
+				</ul>
+			</div>
 		</div>
 	</div>
 </section>
