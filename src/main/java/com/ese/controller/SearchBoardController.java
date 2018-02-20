@@ -1,6 +1,8 @@
 package com.ese.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +20,7 @@ import com.ese.domain.SearchCriteria;
 import com.ese.service.BoardService;
 
 /**
- * °Ë»ö¿¡ ÇÊ¿äÇÑ Controller
+ * ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ Controller
  * @author Administrator
  *
  */
@@ -54,7 +56,7 @@ public class SearchBoardController {
 		model.addAttribute(service.read(bno));
 	}
 	
-	// °Ô½Ã¹° »èÁ¦ Ã³¸®
+	// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String remove(@RequestParam("bno") int bno,
 			SearchCriteria cri,
@@ -72,7 +74,7 @@ public class SearchBoardController {
 		return "redirect:/sboard/list";
 	}
 	
-	// °Ô½Ã¹° ¼öÁ¤ Ã³¸® (GET ¹æ½Ä)
+	// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ (GET ï¿½ï¿½ï¿½)
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPagingGET(int bno, @ModelAttribute("cri") SearchCriteria cri,
 			Model model) throws Exception{
@@ -80,7 +82,7 @@ public class SearchBoardController {
 		model.addAttribute(service.read(bno));
 	}
 	
-	// °Ô½Ã¹° ¼öÁ¤ Ã³¸® (POST ¹æ½Ä)
+	// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ (POST ï¿½ï¿½ï¿½)
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(BoardVO board, 
 			SearchCriteria cri, 
@@ -101,7 +103,7 @@ public class SearchBoardController {
 		return "redirect:/sboard/list";
 	}
 	
-	// µî·Ï ºÎºÐ
+	// ï¿½ï¿½ï¿½ ï¿½Îºï¿½
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET() throws Exception {
 		
@@ -119,5 +121,21 @@ public class SearchBoardController {
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/sboard/list";
+	}
+	
+	/**
+	 * Download Excel File
+	 * @Method Name : excelDown
+	 * @create Date : 2018. 02. 20.
+	 * @made by : Yun Young
+	 * @param :
+	 * @return : 
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/excelDown.do")
+	public String excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		service.excelDown(request, response);
+		
+		return null;
 	}
 }

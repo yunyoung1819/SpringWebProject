@@ -167,36 +167,4 @@ public class BoardController {
 		return "redirect:/board/listPage";
 	}
 	
-	/**
-	 * Download Excel File
-	 * @Method Name : excelDown
-	 * @create Date : 2018. 02. 08.
-	 * @made by : Yun Young
-	 * @param :
-	 * @return : String
-	 */
-	@RequestMapping(value = "/excelDown.do")
-	public @ResponseBody String excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		//String filePath = request.getSession().getServletContext().getRealPath("/")+"file_upload";
-		String filePath = "C://zzz/" + "file_download";
-		
-		System.out.println(filePath);
-		
-		File file = new File(filePath);
-		boolean fileMKResult = false;
-		
-		if(!file.exists()){
-			fileMKResult = file.mkdir();
-		}
-		
-		if(fileMKResult){
-			System.out.println("Directory is made");
-		}
-		
-		service.excelDown(response, filePath);
-		
-		return null;
-	}
-	
 }

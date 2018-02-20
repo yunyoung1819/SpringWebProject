@@ -36,5 +36,5 @@ public interface BoardService {
 	
 	public int listSearchCount(SearchCriteria cri) throws Exception; // �˻�
 	
-	public void excelDown(HttpServletResponse response, String filePath) throws Exception; 
+	public void excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception; 
 }

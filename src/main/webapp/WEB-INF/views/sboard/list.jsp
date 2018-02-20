@@ -31,7 +31,9 @@
 				<input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'></input>
 				<button id='searchBtn'>Search</button>
 				<button id='newBtn'>New Board</button>
-				<button id='excelDown'>엑셀 다운로드</button>
+				<button id='aExcelDown'>
+					<a href="javascript:void(0);">엑셀 다운로드</a>
+				</button>
 				<table class="table table-bordered">
 					<tr>
 						<th style="width: 10px">BNO</th>
@@ -95,8 +97,10 @@
 					</div>
 					
 				</div>
-				<form action="/board/excelDown.do" id="excelForm" method="post" onsubmit="return;">
+				<form id="excelFileForm" name="massiveForm" enctype="multipart/form-data" method="post">
+					<input id="inputExcelFile" type="file" name="excelFile" style="display:none;"/></br>
 				</form>
+				<iframe name="exFrame" id="exFrame" style="display: none"></iframe>
 				<!-- /.box-footer-->
 			</div>
 		</div>
@@ -131,9 +135,16 @@
 		});
 		
 		//Download Excel File
-		$('#excelDown').bind("click", function(){
-			alert("click");
-			$("#excelForm").submit();
+		$('#aExcelDown').bind("click", function(){
+			var params = "";
+			params += '${pageMaker.makeQuery(1)}';
+			params += "&searchType=" + $("select option:selected").val();
+			params += "&keyword=" + $('#keywordInput').val();
+			
+			console.log("*********");
+			console.log("params : " + params);
+			
+			$('#exFrame').attr('src', 'http://localhost:8080/sboard/list/excelDown.do');
 		});
 	});
 			
