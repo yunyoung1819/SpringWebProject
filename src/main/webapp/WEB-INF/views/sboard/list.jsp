@@ -31,9 +31,7 @@
 				<input type="text" name='keyword' id="keywordInput" value='${cri.keyword }'></input>
 				<button id='searchBtn'>Search</button>
 				<button id='newBtn'>New Board</button>
-				<button id='aExcelDown'>
-					<a href="javascript:void(0);">엑셀 다운로드</a>
-				</button>
+				<button id='aExcelDown'>엑셀 다운로드</button>
 				<table class="table table-bordered">
 					<tr>
 						<th style="width: 10px">BNO</th>
