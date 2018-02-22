@@ -134,6 +134,9 @@ public class SearchBoardController {
 	 */
 	@RequestMapping(value = "/excelDown.do")
 	public String excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		System.out.println("excel Controller!");
+		
 		service.excelDown(request, response);
 		
 		return null;

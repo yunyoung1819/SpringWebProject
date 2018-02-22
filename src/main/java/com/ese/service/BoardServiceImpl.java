@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -103,6 +104,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		System.out.println("excel Service");
+		
 		FileInputStream fin = null;
 		
 		try{
@@ -175,18 +178,57 @@ public class BoardServiceImpl implements BoardService {
 			
 			BoardVO boardVO;
 			
-			ArrayList<BoardVO> list = null;
-			//list = (ArrayList<BoardVO>) dao.excelDown(request);
+			List<BoardVO> list = null;
+			//List<BoardVO> list = dao.excelDown();
 			
-			//ArrayList<BoardVO> boardVOArrayList = Lists.newArrayList();
+			System.out.println("excel Service list : " + list);
 			
-			for(BoardVO BoardVOList : list){
-				boardVO = new BoardVO();
-				
-				boardVO.setBno(boardVO.getBno());
+			int listSize = list.size();
+			
+			if(listSize > 0){
+				for(int i = 0; i < listSize; i++){
+					int j = i + 4;
+					
+					mySheet.setRowView(j, 40);
+					
+					mySheet.addCell(new Label(0, j, String.valueOf(list.get(i).getBno()), dataFormat));
+					mySheet.addCell(new Label(1, j, list.get(i).getTitle(), dataFormat));
+					mySheet.addCell(new Label(2, j, list.get(i).getWriter(), dataFormat));
+					mySheet.addCell(new Label(3, j, String.valueOf(list.get(i).getRegdate()), dataFormat));
+					mySheet.addCell(new Label(4, j, String.valueOf(list.get(i).getViewcnt()), dataFormat));
+				}
+			}else{
+				mySheet.addCell(new Label(0, 3, "", dataFormat));
+				mySheet.addCell(new Label(1, 3, "", dataFormat));
+				mySheet.addCell(new Label(2, 3, "", dataFormat));
+				mySheet.addCell(new Label(3, 3, "", dataFormat));
+				mySheet.addCell(new Label(4, 3, "", dataFormat));
 			}
+			
+			// WorkSheet 쓰기
+			myWorkbook.write();
+			// WorkSheet 닫기
+			myWorkbook.close();
+			
+			File file = new File(filePath + File.separator + fileName + ".xls");
+			fin = new FileInputStream(file);
+			
+			int ifilesize = (int) file.length();
+			byte b[] = new byte[ifilesize];
+			response.setContentLength(ifilesize);  		  // 컨텐츠 길이는 file size 만큼
+			response.setContentType("application/smnet"); // MIME Type
+			response.setHeader(
+					"Content-Disposition", 
+					"attachment; filename=" + fileName + ".xls" + ";");
+			
+			ServletOutputStream out = response.getOutputStream();
+			fin.read(b);
+			out.write(b, 0, ifilesize);
+			out.close();
+			fin.close();
+			file.delete();
 		}catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		
 	}
