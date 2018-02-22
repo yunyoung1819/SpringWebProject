@@ -141,10 +141,11 @@
 			params += "&searchType=" + $("select option:selected").val();
 			params += "&keyword=" + $('#keywordInput').val();
 			
-			console.log("*********");
-			console.log("params : " + params);
-			
-			$('#exFrame').attr('src', 'http://localhost:8080/sboard/list/excelDown.do');
+			if(confirm("엑셀 파일을 다운로드 하시겠습니까?") == true){
+				$('#exFrame').attr('src', 'http://localhost:8080/sboard/excelDown.do');
+			}else{
+				return; 
+			}
 		});
 	});
 			

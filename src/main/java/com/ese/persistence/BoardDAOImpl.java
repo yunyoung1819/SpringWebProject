@@ -1,6 +1,7 @@
 package com.ese.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,7 +13,7 @@ import com.ese.domain.Criteria;
 import com.ese.domain.SearchCriteria;
 
 /**
- * BoardDAO ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÑ BoardDAOImpl
+ * BoardDAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BoardDAOImpl
  * 
  * @since : 2017.10.20
  * @author Administrator
@@ -55,7 +56,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> listPage(int page) throws Exception {
 		
-		if(page <= 0){  //page°¡ 0ÀÌ°Å³ª 0º¸´Ù ÀÛÀ» ¶§ 
+		if(page <= 0){  //pageï¿½ï¿½ 0ï¿½Ì°Å³ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
 			page = 1;
 		}
 		
@@ -71,14 +72,14 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectList(namespace + ".listCriteria", cri); 
 	}
 
-	// È­¸é ÇÏ´ÜÀÇ ÆäÀÌÁö ¹øÈ£ Ã³¸®¸¦ À§ÇÑ Total Count ¹ÝÈ¯
+	// È­ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Total Count ï¿½ï¿½È¯
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
 		
 		return session.selectOne(namespace + ".countPaging", cri);
 	}
 
-	// °Ë»ö ¹× ÆäÀÌÂ¡ Ã³¸®
+	// ï¿½Ë»ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	@Override
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 		return session.selectList(namespace + ".listSearch", cri);
@@ -87,5 +88,11 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
+	}
+
+	@Override
+	public List<BoardVO> excelDown(Map<String, Object> paramMap) throws Exception {
+		System.out.println("excel dao");
+		return session.selectList(namespace + ".listExcel");
 	}
 }

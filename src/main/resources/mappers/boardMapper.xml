@@ -124,4 +124,14 @@ order by bno desc, regdate desc
 		</if>		
 	</if>
 </sql>
+
+<select id="listExcel"  parameterType="java.util.HashMap" resultType="com.ese.domain.BoardVO">
+<![CDATA[
+select bno, title, content, writer, regdate, viewcnt
+from
+	tbl_board
+where bno < 100
+]]>
+</select>
+
 </mapper>

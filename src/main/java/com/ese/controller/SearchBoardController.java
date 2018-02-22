@@ -1,5 +1,8 @@
 package com.ese.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -133,11 +136,22 @@ public class SearchBoardController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/excelDown.do")
-	public String excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String excelDown(HttpServletRequest request, HttpServletResponse response, SearchCriteria cri) throws Exception{
 		
 		System.out.println("excel Controller!");
+		Map<String, Object> paramMap = new HashMap<>();
 		
-		service.excelDown(request, response);
+		System.out.println("page: " + cri.getPage());
+		System.out.println("perPageNum: " + cri.getPerPageNum());
+		System.out.println("searchType: " + cri.getSearchType());
+		System.out.println("keyword: " + cri.getKeyword());
+		
+		paramMap.put("page", cri.getPage());
+		paramMap.put("perPageNum", cri.getPerPageNum());
+		paramMap.put("searchType", cri.getSearchType());
+		paramMap.put("keyword", cri.getKeyword());
+		
+		service.excelDown(request, response, paramMap);
 		
 		return null;
 	}

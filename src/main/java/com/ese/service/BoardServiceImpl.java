@@ -2,8 +2,8 @@ package com.ese.service;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
@@ -102,13 +102,14 @@ public class BoardServiceImpl implements BoardService {
 	 * @made by : Yun Young
 	 */
 	@Override
-	public void excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void excelDown(HttpServletRequest request, HttpServletResponse response, Map<String, Object> paramMap) throws Exception {
 		
 		System.out.println("excel Service");
 		
 		FileInputStream fin = null;
 		
 		try{
+			
 			String filePath = request.getSession().getServletContext().getRealPath("/") + "file_uplad_excel"; //파일 경로 지정(없을 경우 자동 생성 있어야함)
 			File f = new File(filePath);
 			
@@ -129,8 +130,7 @@ public class BoardServiceImpl implements BoardService {
 			// 엑셀 파일 하나 생성 (WritableWorkbook)
 			WritableWorkbook myWorkbook = Workbook.createWorkbook(new File(filePath + File.separator + fileName + ".xls"));
 			myWorkbook.setColourRGB(Colour.getInternalColour(61), 218, 238, 243); // 컬러 지정
-			
-			//엑셀 파일에 시트 생성
+
 			WritableSheet mySheet = myWorkbook.createSheet(excelTitle, 0);
 			WritableFont.FontName fontNm = WritableFont.createFont("맑은 고딕"); //맑은 고딕
 			// 타이틀! 시트 내용 제일 위에 들어가는 제목
@@ -157,29 +157,36 @@ public class BoardServiceImpl implements BoardService {
 			dataFormat.setBorder(Border.ALL, BorderLineStyle.THIN, Colour.BLACK);
 			
 			//세로줄(열) 0번부터 시작이고, 넓이 지정
-			mySheet.setColumnView(0, 15);
+			mySheet.setColumnView(0, 15); 
 			mySheet.setColumnView(1, 15);
 			mySheet.setColumnView(2, 20);
 			mySheet.setColumnView(3, 20);
 			mySheet.setColumnView(4, 20);
 			mySheet.setColumnView(5, 20);
-			mySheet.mergeCells(0, 0, 12, 0); //mergeCells(int col1, int row1, int col2, int row2)
+			mySheet.setColumnView(6, 20);
+			mySheet.setColumnView(7, 20);
+			mySheet.setColumnView(8, 20);
+			mySheet.setColumnView(9, 20);
+			mySheet.setColumnView(10, 20);
+			mySheet.setColumnView(11, 20);
+			mySheet.setColumnView(12, 20);
+			mySheet.mergeCells(0, 0, 4, 0); //mergeCells(int col1, int row1, int col2, int row2)
 			
 			// 가로줄(행) 0번부터 시작이고, 넓이 지정
 			mySheet.setRowView(0, 1000);
 			mySheet.setRowView(1, 600);
 			
 			//테이블 헤더 부분에 들어갈 내용, 형식(열,행)
-			mySheet.addCell(new Label(0, 0, "bno", mTitleFormat));
-			mySheet.addCell(new Label(0, 1, "title", mTitleFormat));
-			mySheet.addCell(new Label(1, 1, "writer", mTitleFormat));
-			mySheet.addCell(new Label(2, 1, "regdate", mTitleFormat));
-			mySheet.addCell(new Label(3, 1, "viewcnt", mTitleFormat));
+			mySheet.addCell(new Label(0, 0, "국내도서 베스트셀러 목록", mTitleFormat));
+			mySheet.addCell(new Label(0, 1, "글번호", titleFormat));
+			mySheet.addCell(new Label(1, 1, "제목", titleFormat));
+			mySheet.addCell(new Label(2, 1, "글쓴이", titleFormat));
+			mySheet.addCell(new Label(3, 1, "등록일자", titleFormat));
+			mySheet.addCell(new Label(4, 1, "조회수", titleFormat));
 			
 			BoardVO boardVO;
 			
-			List<BoardVO> list = null;
-			//List<BoardVO> list = dao.excelDown();
+			List<BoardVO> list = dao.excelDown(paramMap);
 			
 			System.out.println("excel Service list : " + list);
 			
@@ -187,9 +194,9 @@ public class BoardServiceImpl implements BoardService {
 			
 			if(listSize > 0){
 				for(int i = 0; i < listSize; i++){
-					int j = i + 4;
+					int j = i + 2;
 					
-					mySheet.setRowView(j, 40);
+					mySheet.setRowView(j, 400);
 					
 					mySheet.addCell(new Label(0, j, String.valueOf(list.get(i).getBno()), dataFormat));
 					mySheet.addCell(new Label(1, j, list.get(i).getTitle(), dataFormat));
@@ -230,6 +237,5 @@ public class BoardServiceImpl implements BoardService {
 		}catch (Exception e) {
 			System.out.println(e);
 		}
-		
 	}
 }

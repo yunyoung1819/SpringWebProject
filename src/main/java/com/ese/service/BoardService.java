@@ -1,6 +1,7 @@
 package com.ese.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,5 +37,5 @@ public interface BoardService {
 	
 	public int listSearchCount(SearchCriteria cri) throws Exception; // �˻�
 	
-	public void excelDown(HttpServletRequest request, HttpServletResponse response) throws Exception; 
+	public void excelDown(HttpServletRequest request, HttpServletResponse response, Map<String, Object> paramMap) throws Exception; 
 }

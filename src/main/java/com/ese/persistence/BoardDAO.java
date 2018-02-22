@@ -1,13 +1,14 @@
 package com.ese.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ese.domain.BoardVO;
 import com.ese.domain.Criteria;
 import com.ese.domain.SearchCriteria;
 
 /**
- * 6. BoardDAO ÀÎÅÍÆäÀÌ½º »ı¼º
+ * 6. BoardDAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
  */
 public interface BoardDAO {
 
@@ -21,15 +22,17 @@ public interface BoardDAO {
 	
 	public List<BoardVO> listAll() throws Exception;
 	
-	public List<BoardVO> listPage(int page) throws Exception; //BoardDAO ÀÎÅÍÆäÀÌ½º¿¡ ÆäÀÌÂ¡ Ã³¸®¿¡ °ü·ÃµÈ ±â´ÉÀ» Ãß°¡
+	public List<BoardVO> listPage(int page) throws Exception; //BoardDAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception; 
 	
-	public int countPaging(Criteria cri) throws Exception; // È­¸é ÇÏ´ÜÀÇ ÆäÀÌÁö ¹øÈ£ Ã³¸®(tocalCount)b ¹İÈ¯ 
+	public int countPaging(Criteria cri) throws Exception; // È­ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ Ã³ï¿½ï¿½(tocalCount)ï¿½b ï¿½ï¿½È¯ 
 	
-	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception; // °Ë»ö°ú ÆäÀÌÂ¡ Ã³¸®
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception; // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 	
-	public int listSearchCount(SearchCriteria cri) throws Exception; // °Ë»ö°ú ÆäÀÌÂ¡ Ã³¸®
+	public int listSearchCount(SearchCriteria cri) throws Exception; // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
+	
+	public List<BoardVO> excelDown(Map<String, Object> paramMap) throws Exception;
 	
 	
 	
